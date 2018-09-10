@@ -4,15 +4,15 @@ class DynamicArray
 {
 public:
 	DynamicArray();
-	DynamicArray(int capacite);
+	DynamicArray(unsigned int capacite);
 	int getCapacite();
-	int setCapacite();
-	int getElement(int i);
-	int setElement();
+	void setCapacite(unsigned int newCapacite);
+	int getElement(unsigned int index);
+	void setElement(unsigned int index, int value);
 	
 private:
 	const int DEFAULT_CAPACITY = 100;
-	int capacite = DEFAULT_CAPACITY;
+	unsigned int capacite = DEFAULT_CAPACITY;
 	int* tabElements;
 };
 

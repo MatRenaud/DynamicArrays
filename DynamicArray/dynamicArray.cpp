@@ -1,14 +1,17 @@
 #include "dynamicArray.h"
+#include <stdexcept>
 
-DynamicArray::DynamicArray(){}
+DynamicArray::DynamicArray(){
+	tabElements = new int[capacite]();
+}
 
-DynamicArray::DynamicArray(int newCapacite)
+DynamicArray::DynamicArray(unsigned int newCapacite)
 {
-	capacite = newCapacite;
-	tabElements= new int[capacite];
-	for (int i = 0; i < capacite; i++) {
-		tabElements[i] = 0;
+	if (newCapacite < 1) {
+		throw std::invalid_argument("...");
 	}
+	capacite = newCapacite;
+	tabElements= new int[capacite]();
 }
 
 int DynamicArray::getCapacite()
@@ -16,19 +19,36 @@ int DynamicArray::getCapacite()
 	return capacite;
 }
 
-int DynamicArray::setCapacite()
+void DynamicArray::setCapacite(unsigned int newCapacite)
 {
-	return 0;
+	if (newCapacite < 1) { throw std::invalid_argument("...");}
+	int maxIndex = capacite;
+	if (this->capacite > newCapacite) {
+		maxIndex = newCapacite;
+	}
+	int* tempTab = new int[newCapacite]();
+	for (int i = 0; i < maxIndex; i++) {
+		tempTab[i] = tabElements[i];
+	}
+	delete tabElements;
+	tabElements = tempTab;
+	this->capacite = newCapacite;	
 }
 
-int DynamicArray::getElement(int i)
+int DynamicArray::getElement(unsigned int index)
 {
-	return tabElements[i];
+	if (index > capacite) {
+		throw std::out_of_range("...");
+	}
+	return tabElements[index];
 }
 
-int DynamicArray::setElement()
+void DynamicArray::setElement(unsigned int index, int value)
 {
-	return 0;
+	if (index > capacite) {
+		this->setCapacite(index+1);
+	}
+	tabElements[index] = value;
 }
 
 
