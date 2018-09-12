@@ -13,6 +13,14 @@ DynamicArray::DynamicArray(unsigned int newCapacite)
 	capacite = newCapacite;
 	tabElements= new int[capacite]();
 }
+DynamicArray::DynamicArray(const DynamicArray& dynamicArray) {
+	this->capacite = dynamicArray.capacite;
+	this->tabElements = new int[capacite];
+	for (int i = 0; i < capacite; i++) {
+		this->tabElements[i] = dynamicArray.tabElements[i];
+	}
+}
+
 
 int DynamicArray::getCapacite()
 {
@@ -49,6 +57,16 @@ void DynamicArray::setElement(unsigned int index, int value)
 		this->setCapacite(index+1);
 	}
 	tabElements[index] = value;
+}
+
+DynamicArray & DynamicArray::operator=(const DynamicArray& dynamicArray)
+{
+	this->capacite = dynamicArray.capacite;
+	this->tabElements = new int[capacite];
+	for (int i = 0; i < capacite; i++) {
+		this->tabElements[i] = dynamicArray.tabElements[i];
+	}
+	return *this;
 }
 
 
