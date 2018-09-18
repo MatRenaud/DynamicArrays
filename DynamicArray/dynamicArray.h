@@ -12,8 +12,8 @@ public:
 	void setElement(unsigned int index, int value);
 	DynamicArray& operator=(const DynamicArray& dynamicArray);
 	bool operator==(const DynamicArray & dynamicArray) const;
-	~DynamicArray();
 	DynamicArray& operator +=(const DynamicArray& dynamicArray);
+	~DynamicArray();
 	
 private:
 	const int DEFAULT_CAPACITY = 100;

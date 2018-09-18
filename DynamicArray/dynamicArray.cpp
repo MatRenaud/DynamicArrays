@@ -93,8 +93,8 @@ DynamicArray & DynamicArray::operator+=(const DynamicArray & dynamicArray)
 {
 	int oldCapacity = this->capacite;
 	this->setCapacite(this->capacite + dynamicArray.capacite);
+	unsigned int j = 0;
 	for (unsigned int i = oldCapacity; i < this->capacite; i++) {
-		unsigned int j = 0;
 		this->setElement(i, dynamicArray.getElement(j++));
 	}
 	return *this;
