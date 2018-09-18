@@ -3,6 +3,9 @@
 
 DynamicArray::DynamicArray(){
 	tabElements = new int[capacite]();
+	for (int i = 0; i < capacite; i++) {
+		tabElements[i] = 0;
+	}
 }
 
 DynamicArray::DynamicArray(unsigned int newCapacite)
@@ -12,6 +15,9 @@ DynamicArray::DynamicArray(unsigned int newCapacite)
 	}
 	capacite = newCapacite;
 	tabElements= new int[capacite]();
+	for (int i = 0; i < capacite; i++) {
+		tabElements[i] = 0;
+	}
 }
 DynamicArray::DynamicArray(const DynamicArray& dynamicArray) {
 	this->capacite = dynamicArray.capacite;
@@ -20,7 +26,6 @@ DynamicArray::DynamicArray(const DynamicArray& dynamicArray) {
 		this->tabElements[i] = dynamicArray.tabElements[i];
 	}
 }
-
 
 int DynamicArray::getCapacite()
 {
@@ -43,13 +48,14 @@ void DynamicArray::setCapacite(unsigned int newCapacite)
 	this->capacite = newCapacite;	
 }
 
-int DynamicArray::getElement(unsigned int index)
+int DynamicArray::getElement(unsigned int index) const
 {
 	if (index > capacite) {
 		throw std::out_of_range("...");
 	}
 	return tabElements[index];
 }
+
 
 void DynamicArray::setElement(unsigned int index, int value)
 {
@@ -67,6 +73,35 @@ DynamicArray & DynamicArray::operator=(const DynamicArray& dynamicArray)
 		this->tabElements[i] = dynamicArray.tabElements[i];
 	}
 	return *this;
+}
+
+bool DynamicArray::operator==(const DynamicArray & dynamicArray) const
+{
+	bool areEquals = true;
+	if (this->capacite != dynamicArray.capacite) {
+		areEquals = false;
+	}
+	for (int i = 0; i < capacite; i++) {
+		if (this->tabElements[i] != dynamicArray.tabElements[i]) {
+			areEquals = false;
+		}
+	}
+	return areEquals;
+}
+
+DynamicArray & DynamicArray::operator+=(const DynamicArray & dynamicArray)
+{
+	int oldCapacity = this->capacite;
+	this->setCapacite(this->capacite + dynamicArray.capacite);
+	for (unsigned int i = oldCapacity; i < this->capacite; i++) {
+		unsigned int j = 0;
+		this->setElement(i, dynamicArray.getElement(j++));
+	}
+	return *this;
+}
+
+DynamicArray::~DynamicArray(){
+
 }
 
 
