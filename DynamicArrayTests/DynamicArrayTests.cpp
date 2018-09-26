@@ -345,6 +345,33 @@ namespace DynamicArrayTests
 			}
 		}
 
+		TEST_METHOD(linearSearch_retourne_lindex_du_premier_int_rencontre) {
+			//Arrange
+			const int TABLEAU_CAPACITE = 5;
+			const int INT_TO_FIND = 3;
+
+			DynamicArray array(TABLEAU_CAPACITE);
+			int expectedIndex;
+			for (int i = 0; i < TABLEAU_CAPACITE; i++) {
+				array.setElement(i, i);
+				if (i = TABLEAU_CAPACITE) {
+					expectedIndex = i;
+				}
+			}
+			//Act
+			int intIndex = array.linearSearch(INT_TO_FIND);
+
+			//Assert
+			Assert::AreEqual(expectedIndex, intIndex);
+			
+
+
+
+
+
+
+		}
+
 
 	private:
 		void AssertDynamicArraysAreEqual(DynamicArray & dynamicArray1, DynamicArray & dynamicArray2)

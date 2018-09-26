@@ -100,6 +100,13 @@ DynamicArray & DynamicArray::operator+=(const DynamicArray & dynamicArray)
 	return *this;
 }
 
+int DynamicArray::linearSearch(const int intToFind)
+{
+	int i = 0;
+	bool intFound = false;
+
+}
+
 DynamicArray::~DynamicArray(){
 
 }
