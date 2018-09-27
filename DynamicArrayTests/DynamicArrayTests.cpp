@@ -354,22 +354,13 @@ namespace DynamicArrayTests
 			int expectedIndex;
 			for (int i = 0; i < TABLEAU_CAPACITE; i++) {
 				array.setElement(i, i);
-				if (i = TABLEAU_CAPACITE) {
-					expectedIndex = i;
-				}
 			}
 			//Act
 			int intIndex = array.linearSearch(INT_TO_FIND);
+			const int EXPECTED_INDEX = 3;
 
 			//Assert
-			Assert::AreEqual(expectedIndex, intIndex);
-			
-
-
-
-
-
-
+			Assert::AreEqual(EXPECTED_INDEX, intIndex);
 		}
 
 

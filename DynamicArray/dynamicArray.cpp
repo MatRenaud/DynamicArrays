@@ -100,11 +100,19 @@ DynamicArray & DynamicArray::operator+=(const DynamicArray & dynamicArray)
 	return *this;
 }
 
-int DynamicArray::linearSearch(const int intToFind)
+unsigned int DynamicArray::linearSearch(const int& intToFind)
 {
 	int i = 0;
+	int intIndex = -1;
 	bool intFound = false;
-
+	while (i < this->capacite && !intFound) {
+		if (this->getElement(i) == intToFind){
+			intFound = true;
+			intIndex = i;
+		}
+		i++;
+	}
+	return intIndex;
 }
 
 DynamicArray::~DynamicArray(){
