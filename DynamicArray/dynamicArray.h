@@ -13,7 +13,8 @@ public:
 	DynamicArray& operator=(const DynamicArray& dynamicArray);
 	bool operator==(const DynamicArray & dynamicArray) const;
 	DynamicArray& operator +=(const DynamicArray& dynamicArray);
-	unsigned int linearSearch(const int& intToFind);
+	int linearSearch(const int& intToFind);
+	int dichotomicSearch(const int& intTofind);
 	~DynamicArray();
 	
 private:

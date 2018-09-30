@@ -100,7 +100,7 @@ DynamicArray & DynamicArray::operator+=(const DynamicArray & dynamicArray)
 	return *this;
 }
 
-unsigned int DynamicArray::linearSearch(const int& intToFind)
+int DynamicArray::linearSearch(const int& intToFind)
 {
 	int i = 0;
 	int intIndex = -1;
@@ -114,6 +114,34 @@ unsigned int DynamicArray::linearSearch(const int& intToFind)
 	}
 	return intIndex;
 }
+
+int DynamicArray::dichotomicSearch(const int& intToFind) {
+	
+	int inf = 0;
+	int middle = this->capacite / 2;
+	int sup = this->capacite;
+	bool intFound = false;
+	int intIndex = -1;
+	do {
+		if (intToFind > this->getElement(middle)) {
+			inf = middle;
+		}
+		else {
+			sup = middle;
+		}
+		middle = (inf + sup) / 2;
+		if (this->getElement(middle) == intToFind) {
+			intFound = true;
+			intIndex = this->getElement(middle);
+		}
+	}
+	while(this->getElement(middle) != intToFind && sup - inf > 1);
+
+	return intIndex;
+}	
+
+
+
 
 DynamicArray::~DynamicArray(){
 

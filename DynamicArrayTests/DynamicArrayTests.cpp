@@ -351,13 +351,29 @@ namespace DynamicArrayTests
 			const int INT_TO_FIND = 3;
 
 			DynamicArray array(TABLEAU_CAPACITE);
-			int expectedIndex;
 			for (int i = 0; i < TABLEAU_CAPACITE; i++) {
 				array.setElement(i, i);
 			}
 			//Act
 			int intIndex = array.linearSearch(INT_TO_FIND);
 			const int EXPECTED_INDEX = 3;
+
+			//Assert
+			Assert::AreEqual(EXPECTED_INDEX, intIndex);
+		}
+
+		TEST_METHOD(dichotomic_retourne_lindex_du_premier_int_rencontre) {
+			//Arrange
+			const int TABLEAU_CAPACITE = 15;
+			const int INT_TO_FIND = 12;
+
+			DynamicArray array(TABLEAU_CAPACITE);
+			for (int i = 0; i < TABLEAU_CAPACITE; i++) {
+				array.setElement(i, i);
+			}
+			//Act
+			int intIndex = array.dichotomicSearch(INT_TO_FIND);
+			const int EXPECTED_INDEX = 12;
 
 			//Assert
 			Assert::AreEqual(EXPECTED_INDEX, intIndex);
