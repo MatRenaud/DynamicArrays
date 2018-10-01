@@ -15,6 +15,7 @@ public:
 	DynamicArray& operator +=(const DynamicArray& dynamicArray);
 	int linearSearch(const int& intToFind);
 	int dichotomicSearch(const int& intTofind);
+	void bubbleSort();
 	~DynamicArray();
 	
 private:

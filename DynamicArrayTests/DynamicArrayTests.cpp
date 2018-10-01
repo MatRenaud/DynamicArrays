@@ -379,6 +379,48 @@ namespace DynamicArrayTests
 			Assert::AreEqual(EXPECTED_INDEX, intIndex);
 		}
 
+		TEST_METHOD(dichotomicSearch_lance_exception_si_tableau_non_sorted) {
+			bool exceptionThrown = false;
+			const int ARRAY_CAPACITY = 5;
+
+			DynamicArray array(ARRAY_CAPACITY);
+			for (int i = 0; i < ARRAY_CAPACITY; i++) {
+				array.setElement(i, i);
+			}
+			array.setElement(2, 12);
+			try {
+				array.dichotomicSearch(5);
+			}
+			catch (std::invalid_argument ex){
+				exceptionThrown = true;
+			}
+
+			Assert::IsTrue(exceptionThrown);
+		}
+
+		TEST_METHOD(bubbleSort_classe_les_elements_en_ordre_croissant) {
+			//Arrange
+			const int arrayCapacity = 5;
+
+			DynamicArray array(arrayCapacity);
+			for (int i = 0; i < arrayCapacity; i++) {
+				array.setElement(i, arrayCapacity - i);
+			}
+
+			//Act
+			array.bubbleSort();
+
+			//Assert
+			bool isSorted = true;
+			for (int i = 0; i < arrayCapacity - 1; i++) {
+				if (array.getElement(i) > array.getElement(i + 1)) {
+					isSorted = false;
+				}
+			}
+			Assert::IsTrue(isSorted);
+		}
+
+
 
 	private:
 		void AssertDynamicArraysAreEqual(DynamicArray & dynamicArray1, DynamicArray & dynamicArray2)
