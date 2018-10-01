@@ -9,6 +9,7 @@ public:
 	int getCapacite();
 	void setCapacite(unsigned int newCapacite);
 	int getElement(unsigned int index) const;
+	int * getTabElements() const;
 	void setElement(unsigned int index, int value);
 	DynamicArray& operator=(const DynamicArray& dynamicArray);
 	bool operator==(const DynamicArray & dynamicArray) const;
@@ -16,6 +17,8 @@ public:
 	int linearSearch(const int& intToFind);
 	int dichotomicSearch(const int& intTofind);
 	void bubbleSort();
+	void quickSort(const int & first, const int & last);
+	int partitionate(int * tabElements, const int & first, const int & last);
 	~DynamicArray();
 	
 private:

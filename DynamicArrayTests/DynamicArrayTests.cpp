@@ -420,7 +420,27 @@ namespace DynamicArrayTests
 			Assert::IsTrue(isSorted);
 		}
 
+		TEST_METHOD(quickSort_tri_la_liste_en_ordre_croissant) {
+			const int arrayCapacity = 5;
 
+			DynamicArray array(arrayCapacity);
+			for (int i = 0; i < arrayCapacity; i++) {
+				array.setElement(i, arrayCapacity - i);
+			}
+
+			//Act
+			int capacity = array.getCapacite() - 1;
+			array.quickSort( 0 , capacity);
+
+			//Assert
+			bool isSorted = true;
+			for (int i = 0; i < arrayCapacity - 1; i++) {
+				if (array.getElement(i) > array.getElement(i + 1)) {
+					isSorted = false;
+				}
+			}
+			Assert::IsTrue(isSorted);
+		}
 
 	private:
 		void AssertDynamicArraysAreEqual(DynamicArray & dynamicArray1, DynamicArray & dynamicArray2)

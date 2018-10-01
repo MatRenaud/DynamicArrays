@@ -1,6 +1,9 @@
 #include "dynamicArray.h"
 #include <stdexcept>
 
+
+using namespace std;
+
 DynamicArray::DynamicArray(){
 	tabElements = new int[capacite]();
 	for (int i = 0; i < capacite; i++) {
@@ -54,6 +57,11 @@ int DynamicArray::getElement(unsigned int index) const
 		throw std::out_of_range("...");
 	}
 	return tabElements[index];
+}
+
+int* DynamicArray::getTabElements() const
+{
+	return this->tabElements;
 }
 
 
@@ -164,11 +172,42 @@ void DynamicArray::bubbleSort() {
 	} while (swapOccured);
 }
 
+void DynamicArray::quickSort(const int& first, const int& last) {
+		
+	int indexPivot;
+	int* tabElements = this->tabElements;
+	if(first < last) {
 
+		indexPivot = partitionate(tabElements, first, last);
+		quickSort(first, indexPivot);
+		quickSort(indexPivot+1, last);  
+	}
+}
+	 
+int DynamicArray::partitionate(int* tabElements, const int& first, const int& last) {
 
+	const int pivot = tabElements[first];
+	int left = first - 1;
+	int right = last + 1;
+
+	while (true) {
+		do
+			right--;
+		while (tabElements[right] > pivot);
+
+		do
+			left++;
+		while (tabElements[left] < pivot);
+
+		if (left < right)
+			swap(tabElements[left], tabElements[right]);
+		else
+			return right;
+	}
+}
 
 DynamicArray::~DynamicArray(){
-
+	delete[] tabElements;
 }
 
 
