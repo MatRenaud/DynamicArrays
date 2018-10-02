@@ -6,7 +6,7 @@ using namespace std;
 
 DynamicArray::DynamicArray(){
 	tabElements = new int[capacite]();
-	for (int i = 0; i < capacite; i++) {
+	for (unsigned int i = 0; i < capacite; i++) {
 		tabElements[i] = 0;
 	}
 }
@@ -18,14 +18,14 @@ DynamicArray::DynamicArray(unsigned int newCapacite)
 	}
 	capacite = newCapacite;
 	tabElements= new int[capacite]();
-	for (int i = 0; i < capacite; i++) {
+	for (unsigned int i = 0; i < capacite; i++) {
 		tabElements[i] = 0;
 	}
 }
 DynamicArray::DynamicArray(const DynamicArray& dynamicArray) {
 	this->capacite = dynamicArray.capacite;
 	this->tabElements = new int[capacite];
-	for (int i = 0; i < capacite; i++) {
+	for (unsigned int i = 0; i < capacite; i++) {
 		this->tabElements[i] = dynamicArray.tabElements[i];
 	}
 }
@@ -77,7 +77,7 @@ DynamicArray & DynamicArray::operator=(const DynamicArray& dynamicArray)
 {
 	this->capacite = dynamicArray.capacite;
 	this->tabElements = new int[capacite];
-	for (int i = 0; i < capacite; i++) {
+	for (unsigned int i = 0; i < capacite; i++) {
 		this->tabElements[i] = dynamicArray.tabElements[i];
 	}
 	return *this;
@@ -89,7 +89,7 @@ bool DynamicArray::operator==(const DynamicArray & dynamicArray) const
 	if (this->capacite != dynamicArray.capacite) {
 		areEquals = false;
 	}
-	for (int i = 0; i < capacite; i++) {
+	for (unsigned int i = 0; i < capacite; i++) {
 		if (this->tabElements[i] != dynamicArray.tabElements[i]) {
 			areEquals = false;
 		}
@@ -110,7 +110,7 @@ DynamicArray & DynamicArray::operator+=(const DynamicArray & dynamicArray)
 
 int DynamicArray::linearSearch(const int& intToFind)
 {
-	int i = 0;
+	unsigned int i = 0;
 	int intIndex = -1;
 	bool intFound = false;
 	while (i < this->capacite && !intFound) {
@@ -154,7 +154,8 @@ int DynamicArray::dichotomicSearch(const int& intToFind) {
 	return intIndex;
 }	
 
-void DynamicArray::bubbleSort() {
+
+/*void DynamicArray::bubbleSort() {
 	int i;
 	bool swapOccured;
 	int length = this->capacite;
@@ -170,6 +171,22 @@ void DynamicArray::bubbleSort() {
 			}
 		}
 	} while (swapOccured);
+}*/
+
+void DynamicArray::bubbleSort(int length) {
+	int i;
+	bool swapOccured = false;
+	for (i = 0; i < length-1; i++) {
+		if (this->getElement(i) > this->getElement(i + 1)) {
+			int temp = this->getElement(i);
+			this->setElement(i, this->getElement(i + 1));
+			this->setElement(i + 1, temp);
+			swapOccured = true;
+		}
+	}
+	if (swapOccured) {
+		this->bubbleSort(length - 1);
+	}
 }
 
 void DynamicArray::quickSort(const int& first, const int& last) {

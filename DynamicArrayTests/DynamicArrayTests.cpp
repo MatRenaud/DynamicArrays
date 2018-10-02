@@ -286,13 +286,13 @@ namespace DynamicArrayTests
 			const int TABLEAU_2_CAPACITE = 5;
 
 			DynamicArray tableau1(TABLEAU_1_CAPACITE_DEPART);
-			for (unsigned int i = 0; i < TABLEAU_1_CAPACITE_DEPART; ++i)
+			for (int i = 0; i < TABLEAU_1_CAPACITE_DEPART; ++i)
 			{
 				tableau1.setElement(i, i*i);
 			}
 			
 			DynamicArray tableau2(TABLEAU_2_CAPACITE);
-			for (unsigned int i = 0; i < TABLEAU_2_CAPACITE; ++i)
+			for (int i = 0; i < TABLEAU_2_CAPACITE; ++i)
 			{
 				tableau2.setElement(i, i*i*i);
 			}
@@ -304,13 +304,13 @@ namespace DynamicArrayTests
 			Assert::AreEqual(TABLEAU_1_CAPACITE_DEPART + TABLEAU_2_CAPACITE, tableau1.getCapacite());
 			
 			//Est-ce que les éléments du tableau 1 sont toujours présents (à partir du début)
-			for (unsigned int i = 0; i < TABLEAU_1_CAPACITE_DEPART; ++i)
+			for (int i = 0; i < TABLEAU_1_CAPACITE_DEPART; ++i)
 			{
 				Assert::AreEqual(int(i*i), tableau1.getElement(i));
 			}
 			
 			//Est-ce que les éléments du tableau 2 ont été ajoutés à la suite du tableau 1 ?
-			for (unsigned int i = TABLEAU_1_CAPACITE_DEPART; i < tableau1.getCapacite(); ++i)
+			for (int i = TABLEAU_1_CAPACITE_DEPART; i < tableau1.getCapacite(); ++i)
 			{
 				Assert::AreEqual(tableau2.getElement(i - TABLEAU_1_CAPACITE_DEPART), tableau1.getElement(i));
 			}
@@ -338,7 +338,7 @@ namespace DynamicArrayTests
 				Assert::AreEqual(int(i*i), tableau.getElement(i));
 			}
 
-			for (unsigned int i = TABLEAU_CAPACITE_DEPART; i < tableau.getCapacite(); ++i)
+			for (int i = TABLEAU_CAPACITE_DEPART; i < tableau.getCapacite(); ++i)
 			{
 				int valeurElement = int((i - TABLEAU_CAPACITE_DEPART) * (i - TABLEAU_CAPACITE_DEPART));
 				Assert::AreEqual(valeurElement, tableau.getElement(i));
@@ -398,7 +398,7 @@ namespace DynamicArrayTests
 			Assert::IsTrue(exceptionThrown);
 		}
 
-		TEST_METHOD(bubbleSort_classe_les_elements_en_ordre_croissant) {
+		/*TEST_METHOD(bubbleSort_classe_les_elements_en_ordre_croissant) {
 			//Arrange
 			const int arrayCapacity = 5;
 
@@ -409,6 +409,28 @@ namespace DynamicArrayTests
 
 			//Act
 			array.bubbleSort();
+
+			//Assert
+			bool isSorted = true;
+			for (int i = 0; i < arrayCapacity - 1; i++) {
+				if (array.getElement(i) > array.getElement(i + 1)) {
+					isSorted = false;
+				}
+			}
+			Assert::IsTrue(isSorted);
+		}*/
+
+		TEST_METHOD(bubbleSort_récursive_classe_les_elements_en_ordre_croissant) {
+			//Arrange
+			const int arrayCapacity = 25;
+
+			DynamicArray array(arrayCapacity);
+			for (int i = 0; i < arrayCapacity; i++) {
+				array.setElement(i, arrayCapacity - i);
+			}
+
+			//Act
+			array.bubbleSort(arrayCapacity);
 
 			//Assert
 			bool isSorted = true;

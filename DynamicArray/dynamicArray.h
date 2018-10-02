@@ -16,7 +16,8 @@ public:
 	DynamicArray& operator +=(const DynamicArray& dynamicArray);
 	int linearSearch(const int& intToFind);
 	int dichotomicSearch(const int& intTofind);
-	void bubbleSort();
+	//void bubbleSort();
+	void bubbleSort(int length);
 	void quickSort(const int & first, const int & last);
 	int partitionate(int * tabElements, const int & first, const int & last);
 	~DynamicArray();
